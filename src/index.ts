@@ -7,8 +7,10 @@ async function run() {
 
   await axios.get(`https://api.github.com/users/${github.context.actor}`)
   .then((res: any) => {
+      core.info(res.status);
       core.info('Setup Ok');
-      process.env.avatar_url = res.data.avatar_url;
+      core.info(JSON.stringify(res.data));
+      process.env.avatar_url = 'https://avatars.githubusercontent.com/u/9919?v=4';
   }).catch((err: any) => {
       process.env.avatar_url = 'https://avatars1.githubusercontent.com/u/9919?v=4';
       core.error(err);
